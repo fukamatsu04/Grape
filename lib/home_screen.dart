@@ -38,7 +38,51 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                   size: 29.0,
                 ),
-                onPressed: () => FirebaseAuth.instance.signOut(),
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      backgroundColor: Colors.purple[900],
+                      title: const Text(
+                        "Alert",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      content: const Text(
+                        "Do you want to logout?",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          child: Text(
+                            "Yes",
+                            style: TextStyle(
+                              color: Colors.purpleAccent[400],
+                            ),
+                          ),
+                          onPressed: () {
+                            FirebaseAuth.instance.signOut();
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(
+                            "No",
+                            style: TextStyle(
+                              color: Colors.purpleAccent[400],
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
               )
             ],
           ),
@@ -47,3 +91,5 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+//FirebaseAuth.instance.signOut(),
