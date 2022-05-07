@@ -14,15 +14,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
-
     return Scaffold(
       body: Container(
         decoration: kGradientBackground,
         child: SafeArea(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                icon: Icon(Icons.logout),
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                  size: 35.0,
+                ),
+              ),
+              const SizedBox(
+                width: 200.0,
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                  size: 29.0,
+                ),
                 onPressed: () => FirebaseAuth.instance.signOut(),
               )
             ],
