@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const Color kFocusedBorderColor = Color.fromARGB(255, 218, 6, 165);
+
 BoxDecoration kGradientBackground = BoxDecoration(
   gradient: LinearGradient(
       begin: Alignment.topLeft,
