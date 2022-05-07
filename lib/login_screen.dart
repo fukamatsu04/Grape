@@ -1,20 +1,30 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:login/login_screen.dart';
+import 'package:login/sing_up_screen.dart';
 import 'const_and_colors.dart';
 
 // ignore: use_key_in_widget_constructors
-class SingUPscreen extends StatefulWidget {
-  static String id = "singUP";
-
+class LoginScreen extends StatefulWidget {
+  static String id = "homeScreen";
   @override
-  State<SingUPscreen> createState() => _SingUPscreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SingUPscreenState extends State<SingUPscreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: kGradientBackground,
         child: SafeArea(
@@ -32,38 +42,7 @@ class _SingUPscreenState extends State<SingUPscreen> {
                   height: 45.0,
                 ),
                 TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Enter your name',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black, width: 1.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: kFocusedBorderColor, width: 3.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                TextField(
+                  controller: emailController,
                   textAlign: TextAlign.center,
                   onChanged: (value) {},
                   decoration: const InputDecoration(
@@ -96,6 +75,8 @@ class _SingUPscreenState extends State<SingUPscreen> {
                   height: 10.0,
                 ),
                 TextField(
+                  obscureText: true,
+                  controller: passwordController,
                   textAlign: TextAlign.center,
                   onChanged: (value) {},
                   decoration: const InputDecoration(
@@ -131,13 +112,11 @@ class _SingUPscreenState extends State<SingUPscreen> {
                     borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                     elevation: 5.0,
                     child: MaterialButton(
-                      onPressed: () {
-                        //Implement login functionality.
-                      },
+                      onPressed: signIn,
                       minWidth: 200.0,
                       height: 42.0,
                       child: const Text(
-                        'Create Account',
+                        'Log In',
                       ),
                     ),
                   ),
@@ -146,17 +125,17 @@ class _SingUPscreenState extends State<SingUPscreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Already have an account?",
+                      "Dont have an account?",
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, LoginScreen.id);
+                        Navigator.pushNamed(context, SingUPscreen.id);
                       },
                       child: Text(
-                        "Log in",
+                        "Sing up",
                         style: TextStyle(
                           color: Colors.purpleAccent[400],
                         ),
@@ -169,6 +148,13 @@ class _SingUPscreenState extends State<SingUPscreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
     );
   }
 }

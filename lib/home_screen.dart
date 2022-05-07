@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:login/sing_up_screen.dart';
+import 'package:login/login_screen.dart';
 import 'const_and_colors.dart';
 
 // ignore: use_key_in_widget_constructors
 class HomeScreen extends StatefulWidget {
-  static String id = "homeScreen";
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -12,126 +13,19 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       body: Container(
         decoration: kGradientBackground,
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  height: 150.0,
-                  child: Image.asset('images/grape.png'),
-                ),
-                const SizedBox(
-                  height: 45.0,
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Enter your email',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black, width: 1.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: kFocusedBorderColor, width: 3.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Enter your password',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black, width: 1.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: kFocusedBorderColor, width: 3.0),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(32.0),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0),
-                  child: Material(
-                    color: Colors.purpleAccent[400],
-                    borderRadius: const BorderRadius.all(Radius.circular(30.0)),
-                    elevation: 5.0,
-                    child: MaterialButton(
-                      onPressed: () {
-                        //Implement login functionality.
-                      },
-                      minWidth: 200.0,
-                      height: 42.0,
-                      child: const Text(
-                        'Log In',
-                      ),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Dont have an account?",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, SingUPscreen.id);
-                      },
-                      child: Text(
-                        "Sing up",
-                        style: TextStyle(
-                          color: Colors.purpleAccent[400],
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
+          child: Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () => FirebaseAuth.instance.signOut(),
+              )
+            ],
           ),
         ),
       ),
