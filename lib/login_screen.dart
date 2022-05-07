@@ -36,8 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: 150.0,
-                  child: Image.asset('images/grape.png'),
+                  height: 190.0,
+                  child: Image.asset('images/grape4.png'),
                 ),
                 const SizedBox(
                   height: 45.0,
@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       minWidth: 200.0,
                       height: 42.0,
                       child: const Text(
-                        'Log In',
+                        'Login',
                       ),
                     ),
                   ),
@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      "Dont have an account?",
+                      "Don't have an account?",
                       style: TextStyle(
                         color: Colors.white,
                       ),

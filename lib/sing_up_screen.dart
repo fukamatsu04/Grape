@@ -25,8 +25,8 @@ class _SingUPscreenState extends State<SingUPscreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: 150.0,
-                  child: Image.asset('images/grape.png'),
+                  height: 190.0,
+                  child: Image.asset('images/grape4.png'),
                 ),
                 const SizedBox(
                   height: 45.0,
