@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "125920032922",
+    "project_id": "my-grape-project",
+    "storage_bucket": "my-grape-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:125920032922:android:54baa5d9d2a01cb936c723",
+        "android_client_info": {
+          "package_name": "com.example.login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "125920032922-96fjt824hgcn2k4m8di9p7pno16ks51r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4zpAtC6u5OP4sygpHBaFB6WD4WpE1xNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "125920032922-96fjt824hgcn2k4m8di9p7pno16ks51r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
