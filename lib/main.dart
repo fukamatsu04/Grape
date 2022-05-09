@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:login/home_screen.dart';
 import 'package:login/login_screen.dart';
 import 'package:login/sing_up_screen.dart';
+import 'package:login/utils.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,20 +20,22 @@ class LogIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
       home: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return const Center(child: Text('Something went wrong!'));
-            } else if (snapshot.hasData) {
-              return HomeScreen();
-            } else {
-              return LoginScreen();
-            }
-          }),
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Something went wrong!'));
+          } else if (snapshot.hasData) {
+            return HomeScreen();
+          } else {
+            return LoginScreen();
+          }
+        },
+      ),
       routes: {
         SingUPscreen.id: (context) => SingUPscreen(),
         LoginScreen.id: (context) => LoginScreen(),
